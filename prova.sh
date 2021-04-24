@@ -21,11 +21,13 @@ function tests {
 }
 
 #report results
-function result {
+function results {
 	if [[ ${T_OK} == 0 ]]; then
 		echo "test passed. temperatures are fine."
-		echo "max temperature reached: ${MAX_T}"
+	else
+		echo "test NOT passed. temperatures where too high"
 	fi
+	echo "max temperature reached: ${MAX_T}"
 }
 
 # stress test
@@ -80,7 +82,7 @@ function construct_info_message {
 
 # optiona:  auto-launch update if temps are ok
 function apt_up {
-	if [[ T_OK == 0 ]]; then
+	if [[ ${T_OK} == 0 ]]; then
 		( sudo apt update && apt upgrade -y ) &
 	fi
 }
@@ -88,6 +90,7 @@ function apt_up {
 function main {
 	construct_info_message
 	tests
+	for 
 }
 
 main
