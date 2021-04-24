@@ -20,6 +20,18 @@ function tests {
 	(str) & sensor
 }
 
+# check for sensors and stress installed
+function check {
+	if ! command -v sensors &> /dev/null; then
+		echo "sensors not installed. aborting..."
+		exit -1
+	fi
+	if ! command -v stress &> /dev/null; then
+		echo "sensors not installed. aborting..."
+		exit -1
+	fi
+}
+
 #report results
 function results {
 	if [[ ${T_OK} == 0 ]]; then
@@ -80,7 +92,7 @@ function construct_info_message {
 	INFO_MESSAGE="running test with: ${CPU_COUNT} cpu(s), ${IO_COUNT} io(s), ${VM_COUNT} vm(s)"
 }
 
-# optiona:  auto-launch update if temps are ok
+# optional:  auto-launch update if temps are ok
 function apt_up {
 	echo "launching updates. please type password."
 	if [[ ${T_OK} == 0 ]]; then
@@ -90,6 +102,7 @@ function apt_up {
 
 #main function
 function main {
+	check
 	construct_info_message
 	tests
 	if [[ $# != 0 && $1 == "-u" ]]; then
