@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #define params of stress test
-STRESS_TIMEOUT="5s"
+STRESS_TIMEOUT="300s"
 CPU_COUNT="2"
 IO_COUNT="4"
 VM_COUNT="2"
@@ -27,7 +27,7 @@ function results {
 	else
 		echo "test NOT passed. temperatures where too high"
 	fi
-	echo "max temperature reached: ${MAX_T}"
+	echo "max temperature reached: ${MAX_T}°C"
 }
 
 # stress test
@@ -88,6 +88,7 @@ function apt_up {
 	fi
 }
 
+#main function
 function main {
 	construct_info_message
 	tests
