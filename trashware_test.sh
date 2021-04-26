@@ -27,7 +27,7 @@ function check {
 		exit -1
 	fi
 	if ! command -v stress &> /dev/null; then
-		echo "sensors not installed. aborting..."
+		echo "stress not installed. aborting..."
 		exit -1
 	fi
 }
