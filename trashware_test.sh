@@ -2,9 +2,9 @@
 
 #define params of stress test
 STRESS_TIMEOUT="300s"
-CPU_COUNT="2"
-IO_COUNT="4"
-VM_COUNT="2"
+CPU_COUNT=$(nproc)
+IO_COUNT=$(( CPU_COUNT * 2 ))
+VM_COUNT=${CPU_COUNT}
 
 # define temperatures at wich warnings are displayed
 T_WARNING="75"
