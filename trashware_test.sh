@@ -37,7 +37,7 @@ function results {
 	if [[ ${T_OK} == 0 ]]; then
 		echo "test passed. temperatures are fine."
 	else
-		echo "test NOT passed. temperatures where too high"
+		echo "test NOT passed. temperatures were too high"
 	fi
 	echo "max temperature reached: ${MAX_T}°C"
 }
@@ -62,8 +62,8 @@ function sensor {
 			elif [[ ${toasty} != "2" && ${temp%%.*} -ge ${T_WARNING} ]]; then
 				toasty=1;
 			fi
-			temps_cores="${temps_cores}Core${num_core}: ${temp} "
-
+			temps_cores="${temps_cores}Core ${num_core}: ${temp} "
+			(( num_core = ${num_core} + 1 ))
 			# check max temperature
 			if [[ ${temp%%.*} -gt ${MAX_T} ]]; then
 				MAX_T=${temp%%.*}
